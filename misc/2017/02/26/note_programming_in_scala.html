@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>笔记: Programming in Scala, third edition</title>
+  <meta name="description" content="前段时间看了此书，简要书摘如下，以便个人快速回顾。">
+
+  <link rel="stylesheet" href="../../../../css/main.css">
+  <link rel="canonical" href="note_programming_in_scala.html">
+  <link rel="alternate" type="application/rss+xml" title="飲冰" href="../../../../feed.xml.rss">
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99358515-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-99358515-2');
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?93958d5b998cdceacf0dd973dfdf71b5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="../../../../index.html">飲冰</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="../../../../about/index.html">简介</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../../life/index.html">生活</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../index.html">琐碎</a>
+          
+        
+          
+          <a class="page-link" href="../../../../recommend.html">推荐</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">笔记: Programming in Scala, third edition</h1>
+    <p class="post-meta"><time datetime="2017-02-26T00:00:00+00:00" itemprop="datePublished">Feb 26, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>前段时间看了此书，简要书摘如下，以便个人快速回顾。</p>
+
+<h3 id="4-classes-and-objects">4. Classes and Objects</h3>
+<p><code class="language-plaintext highlighter-rouge">extends App</code>: don’t need write <code class="language-plaintext highlighter-rouge">main</code> function.</p>
+
+<h4 id="52-literals">5.2 Literals</h4>
+<p>literal: a way to write a constant value directly in code.</p>
+
+<h5 id="inter-literals">Inter literals</h5>
+
+<h5 id="floating-point-literals">Floating point literals</h5>
+
+<h5 id="character-literals">Character literals</h5>
+
+<h5 id="string-literals">String literals</h5>
+<p>raw string:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">println</span><span class="o">(</span><span class="s">"""|Welcome to Ultamix 3000.
+           |Type "HELP" for help."""</span><span class="o">.</span><span class="py">stripMargin</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h5 id="symbol-literals">Symbol literals</h5>
+<p>``ident`</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">s</span> <span class="k">=</span> <span class="ss">'aSymbol</span>
+<span class="k">val</span> <span class="nv">nm</span> <span class="k">=</span> <span class="nv">s</span><span class="o">.</span><span class="py">name</span>
+</code></pre></div></div>
+
+<h5 id="boolean-literals">Boolean literals</h5>
+<p><code class="language-plaintext highlighter-rouge">true</code> and <code class="language-plaintext highlighter-rouge">false</code></p>
+
+<h4 id="53-string-interpolation">5.3 String Interpolation</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span><span class="s">"Hello, $name"</span>
+<span class="n">f</span><span class="s">"${math.Pi}%.5f"</span>
+<span class="n">raw</span><span class="s">"No\\\\escape!"</span>
+</code></pre></div></div>
+
+<h4 id="54-operators-are-methods">5.4 Operators are Methods</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">sum</span> <span class="k">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1">// operator is method: 1.+(2)</span>
+<span class="n">s</span> <span class="nf">indexof</span> <span class="o">(</span><span class="sc">'o'</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span> <span class="c1">// method is operator: s.indexof('o', 5)</span>
+</code></pre></div></div>
+
+<p>Operators:</p>
+
+<ul>
+  <li>infix: <code class="language-plaintext highlighter-rouge">7 + 2</code></li>
+  <li>prefix: unary
+    <ul>
+      <li>only four identifiers: <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">!</code>, <code class="language-plaintext highlighter-rouge">~</code></li>
+    </ul>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="o">-</span><span class="mf">2.0</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="o">(</span><span class="mf">2.0</span><span class="o">).</span><span class="py">unary_-</span>
+</code></pre></div>    </div>
+  </li>
+  <li>postfix: unary
+    <ul>
+      <li>empty parameter <code class="language-plaintext highlighter-rouge">s.toLowerCase</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="55-arithmetic-operations">5.5 Arithmetic Operations</h4>
+
+<h4 id="56-relational-and-logical-operations">5.6 Relational and Logical Operations</h4>
+<p>short-circuit?</p>
+
+<p>operator = method</p>
+
+<ul>
+  <li>normal arguments: evaluated before entering a method</li>
+  <li>by-name parameters: delay</li>
+</ul>
+
+<h4 id="57-bitwise-operations">5.7 Bitwise Operations</h4>
+
+<h4 id="58-object-equality">5.8 Object Equality</h4>
+<p>comparing value equality: <code class="language-plaintext highlighter-rouge">==</code>(<code class="language-plaintext highlighter-rouge">equals</code>), <code class="language-plaintext highlighter-rouge">!=</code></p>
+
+<p>comparing reference equality: <code class="language-plaintext highlighter-rouge">eq</code> and <code class="language-plaintext highlighter-rouge">ne</code></p>
+
+<h4 id="59-operator-precedence-and-associativity">5.9 Operator Precedence and Associativity</h4>
+
+<h4 id="510-rich-wrappers">5.10 Rich Wrappers</h4>
+
+<h3 id="6-functional-objects">6. Functional Objects</h3>
+
+<h4 id="62-constructing-rational">6.2 Constructing Rational</h4>
+<p>any code which isn’t part of a field or a method definition -&gt; primary constructor.</p>
+
+<h4 id="64-checking-preconditions">6.4 Checking Preconditions</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Rational</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">d</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nf">require</span><span class="o">(</span><span class="n">d</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="65-adding-fields">6.5 Adding Fields</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Rational</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">d</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// class parameters</span>
+  <span class="k">val</span> <span class="nv">numer</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">n</span> <span class="c1">// field</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="67-auxiliary-constructors">6.7 Auxiliary Constructors</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Rational</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">d</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="nf">this</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="nf">this</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>primary constructor: single point of entry of a class.</li>
+  <li>only the primary constructor can invoke a superclass constructor.</li>
+</ul>
+
+<h4 id="68-private-fields-and-methods">6.8 Private Fields and Methods</h4>
+
+<h4 id="610-identifiers-in-scala">6.10 Identifiers in Scala</h4>
+<ul>
+  <li>alphanumeric identifier</li>
+  <li>operator identifier</li>
+  <li>mixed identifier: <code class="language-plaintext highlighter-rouge">unary_+</code></li>
+  <li>literal identifier: <code class="language-plaintext highlighter-rouge">`yield`</code></li>
+</ul>
+
+<h4 id="611-method-overloading">6.11 Method Overloading</h4>
+<p>chosen overloaded version: best matches the static types of the arguments.</p>
+
+<h4 id="612-implicit-conversions">6.12 Implicit Conversions</h4>
+
+<h3 id="7-built-in-control-structures">7. Built-in Control Structures</h3>
+<p>only control structures: <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">while</code>, <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">try</code>, <code class="language-plaintext highlighter-rouge">match</code>, and function calls.</p>
+
+<p><code class="language-plaintext highlighter-rouge">()</code>: unit value</p>
+<ul>
+  <li>assignment in scala <em>always</em> results in the <strong>unit value</strong>.</li>
+</ul>
+
+<h4 id="73-for-expressions">7.3 For Expressions</h4>
+<p><code class="language-plaintext highlighter-rouge">to</code> and <code class="language-plaintext highlighter-rouge">until</code></p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">for</span> <span class="o">(</span><span class="n">file</span> <span class="k">&lt;-</span> <span class="n">filesHere</span>
+     <span class="k">if</span> <span class="nv">file</span><span class="o">.</span><span class="py">isFile</span> <span class="c1">// filter</span>
+	 <span class="k">if</span> <span class="nv">file</span><span class="o">.</span><span class="py">getName</span><span class="o">.</span><span class="py">endsWith</span><span class="o">(</span><span class="s">".scala"</span><span class="o">)</span>
+<span class="o">)</span> <span class="nf">print</span><span class="o">(</span><span class="n">file</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scalaFiles</span> <span class="k">=</span> <span class="nf">for</span> <span class="o">(</span><span class="n">file</span> <span class="k">&lt;-</span> <span class="n">filesHere</span>
+     <span class="k">if</span> <span class="nv">file</span><span class="o">.</span><span class="py">isFile</span> <span class="c1">// filter</span>
+	 <span class="k">if</span> <span class="nv">file</span><span class="o">.</span><span class="py">getName</span><span class="o">.</span><span class="py">endsWith</span><span class="o">(</span><span class="s">".scala"</span><span class="o">)</span>
+<span class="o">)</span> <span class="k">yield</span> <span class="o">{</span><span class="n">file</span><span class="o">}</span> <span class="c1">// return collectons</span>
+<span class="c1">// or `yield file`</span>
+</code></pre></div></div>
+
+<h4 id="74-exception-handing-with-try-expressions">7.4 Exception Handing with Try Expressions</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="nv">f</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"input.txt"</span><span class="o">)</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="n">ex</span><span class="k">:</span> <span class="kt">FileNotFoundException</span> <span class="o">=&gt;</span> <span class="c1">//....</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>avoid returning values from finally clauses.</p>
+
+<h4 id="77-variable-scope">7.7 Variable Scope</h4>
+<p>an inner variable will <em>shadow</em> a like-named outer variable.</p>
+
+<h3 id="8-functions-and-closures">8. Functions and Closures</h3>
+
+<h4 id="82-local-functions">8.2 Local Functions</h4>
+<p>local functions can access the parameters of their enclosing function.</p>
+
+<h4 id="85-placeholder-syntax">8.5 Placeholder Syntax</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">f</span> <span class="k">=</span> <span class="o">(</span><span class="k">_:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="k">_:</span> <span class="kt">Int</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="86-partially-applied-functions">8.6 Partially Applied Functions</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">b</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">c</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="k">val</span> <span class="nv">a</span> <span class="k">=</span> <span class="n">sum</span> <span class="k">_</span>
+<span class="k">val</span> <span class="nv">b</span> <span class="k">=</span> <span class="nf">sum</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="k">_:</span> <span class="kt">Int</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+
+</code></pre></div></div>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">someNumbers</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span><span class="n">println</span> <span class="k">_</span><span class="o">)</span>
+<span class="nv">someNumbers</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="87-closures">8.7 Closures</h4>
+
+<ul>
+  <li>
+    <p>closures capture variables themselves, not the value to which</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">more</span> <span class="k">=</span> <span class="mi">1</span>
+<span class="k">val</span> <span class="nv">addMore</span> <span class="k">=</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">more</span> <span class="c1">// dynamical bind</span>
+<span class="c1">// function value (the object) addMore is a closure</span>
+<span class="n">more</span> <span class="k">=</span> <span class="mi">9999</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Changes: inside &lt;==&gt; outside</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">sum</span> <span class="k">=</span> <span class="mi">0</span>
+<span class="nv">someNumbers</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span><span class="n">sum</span> <span class="o">+=</span> <span class="k">_</span><span class="o">)</span>
+<span class="c1">//or</span>
+<span class="k">val</span> <span class="nv">closure</span> <span class="k">=</span> <span class="n">x</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="n">x</span> <span class="o">+</span> <span class="n">sum</span><span class="o">;</span> <span class="o">()}</span>
+<span class="nv">someNumbers</span><span class="o">.</span><span class="py">foreach</span><span class="o">(</span><span class="n">closure</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="88-special-function-call-forms">8.8 Special Function Call Forms</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Repeated parameters</span>
+<span class="nf">echo</span> <span class="o">(</span><span class="n">arr</span><span class="k">:</span> <span class="k">_</span><span class="kt">*</span><span class="o">)</span>
+
+<span class="c1">// Named arguments</span>
+<span class="nf">speed</span><span class="o">(</span><span class="n">time</span> <span class="k">=</span> <span class="mi">10</span><span class="o">,</span> <span class="n">distance</span> <span class="k">=</span> <span class="mi">100</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="89-tail-recursion">8.9 Tail Recursion</h4>
+<p>Often, a recusive solution is more elegant and concise than a loop-based one.</p>
+
+<p>Note: recusive call is the <em>last</em> thing that happens in the <em>evaluation</em> of function approximate’s body.</p>
+
+<h3 id="9-control-abstraction">9. Control Abstraction</h3>
+
+<h4 id="93-currying">9.3 Currying</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">curriedSum</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)(</span><span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="k">val</span> <span class="nv">onePlus</span> <span class="k">=</span> <span class="nf">curriedSum</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span><span class="k">_</span>
+</code></pre></div></div>
+
+<h4 id="95-by-name-parameters">9.5 By-name Parameters</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">myAssert</span><span class="o">(</span><span class="n">predicate</span><span class="k">:</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span> <span class="k">=</span> <span class="c1">//...</span>
+
+<span class="k">def</span> <span class="nf">byNameAssert</span><span class="o">(</span><span class="n">predicate</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span> <span class="k">=</span> <span class="c1">//...</span>
+</code></pre></div></div>
+
+<h3 id="10-composition-and-inheritance">10. Composition and Inheritance</h3>
+
+<h4 id="102-abstract-classes">10.2 Abstract Classes</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Element</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="103-defining-parameterless-methods">10.3 Defining Parameterless Methods</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">width</span><span class="k">:</span> <span class="kt">Int</span> <span class="c1">// access mutable state, computed on each method call</span>
+
+<span class="k">val</span> <span class="nv">width</span><span class="k">:</span> <span class="kt">Int</span> <span class="c1">// precomputed when initialized</span>
+</code></pre></div></div>
+
+<h4 id="105-overriding-methods-and-fields">10.5 Overriding Methods and Fields</h4>
+<p>field and methods belong to the same namespace =&gt; overrided by each other</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">WontCompile</span> <span class="o">{</span>
+  <span class="k">private</span> <span class="k">var</span> <span class="n">f</span> <span class="k">=</span> <span class="mi">0</span> <span class="c1">// Won't compile, because a field</span>
+  <span class="k">def</span> <span class="nf">f</span> <span class="k">=</span> <span class="mi">1</span>         <span class="c1">// and methd have the same name</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>scala’s two namespaces are:</p>
+
+<ul>
+  <li>values: fields, methods, packages, and singleton objects;</li>
+  <li>types: class and trait names.</li>
+</ul>
+
+<h4 id="106-defining-parameteric-fields">10.6 Defining Parameteric Fields</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Cat</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="nv">dangerous</span> <span class="k">=</span> <span class="kc">false</span>
+<span class="o">}</span>
+
+<span class="k">class</span> <span class="nc">Tiger</span> <span class="o">{</span>
+  <span class="k">override</span> <span class="k">val</span> <span class="nv">dangerous</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">,</span> <span class="c1">// parametric field definition</span>
+  <span class="k">private</span> <span class="k">var</span> <span class="n">age</span><span class="k">:</span> <span class="kt">Int</span>
+<span class="o">}</span> <span class="k">extends</span> <span class="nc">Cat</span>
+</code></pre></div></div>
+
+<h4 id="107-invoking-superclass-constructors">10.7 Invoking Superclass Constructors</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LineElements</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ArrayElement</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="n">s</span><span class="o">))</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="108-using-overriding-modifiers">10.8 Using Overriding Modifiers</h4>
+
+<h4 id="109-polymorphism-and-dynamic-binding">10.9 Polymorphism and Dynamic Binding</h4>
+<p>dynamically bound: actual method implementation invoked &lt;= runtime based on the class of the object, not the type of the variable or expression.</p>
+
+<p>notice: override method.</p>
+
+<h4 id="1010-declaring-final-members">10.10 Declaring Final Members</h4>
+<p>final: cannot be ovverriden or subclassed</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">final</span> <span class="k">class</span> <span class="nc">ArryElement</span> <span class="o">{</span>
+  <span class="k">final</span> <span class="n">overriden</span> <span class="k">def</span> <span class="nf">demon</span><span class="o">()</span> <span class="k">=</span> <span class="o">{}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="1011-using-composition-and-inheritance">10.11 Using Composition and Inheritance</h4>
+<p>inheritance relation:</p>
+
+<ul>
+  <li>whether it models an <code class="language-plaintext highlighter-rouge">is-a</code> relationship?</li>
+  <li>whether clients will want to use the subclass type as a superclass type?</li>
+</ul>
+
+<h3 id="11-scalas-hierarchy">11. Scala’s Hierarchy</h3>
+
+<h4 id="111-scalas-class-hierarchy">11.1 Scala’s Class Hierarchy</h4>
+<p>individual classes can tailor what <code class="language-plaintext highlighter-rouge">==</code> or <code class="language-plaintext highlighter-rouge">!=</code> means by overriding the <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
+
+<p>class AnyRef defines an <code class="language-plaintext highlighter-rouge">eq</code> mothod: reference equality.</p>
+
+<h3 id="12-traits">12. Traits</h3>
+
+<h4 id="121-how-traits-work">12.1 How Traits Work</h4>
+<p>A trait also defines a type.</p>
+
+<p>trait definition = class definition with only two exceptions:</p>
+
+<ul>
+  <li>
+    <p>a trait cannot have any “class” parameter.</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">trait</span> <span class="nc">NoPoint</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="c1">// Does not compile</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>super calls are statically bound in classes, whereas they are dynamically bound in traits.</p>
+  </li>
+</ul>
+
+<h4 id="122-thin-versus-rich-interfaces">12.2 Thin Versus Rich Interfaces</h4>
+<p>traits can enrich a thin interface, making it into a rich interface.</p>
+
+<p>traits:</p>
+
+<ul>
+  <li>a small number of abstract methods;</li>
+  <li>a potentially large number of concrete methods.</li>
+</ul>
+
+<h4 id="124-the-ordered-trait">12.4 The Ordered Trait</h4>
+<p>type paramter</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Rational</span><span class="o">(</span><span class="n">n</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">d</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Ordered</span><span class="o">[</span><span class="kt">Rational</span><span class="o">]</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="125-traits-as-stackable-modifications">12.5 Traits As Stackable Modifications</h4>
+<p>super call in a trai are dynamically bound(even for abstract method):traits futhest to the right take effect first, roughly speaking.</p>
+
+<h4 id="126-why-not-multiple-inheritance">12.6 Why not Multiple Inheritance?</h4>
+<p>mutliple inheritance: the method called by a supercall can be determined right where the call appears.</p>
+
+<p>traits: the method called is determined by a <strong>linearization</strong> of the classes and traits that are miexed into a class.</p>
+
+<h4 id="127-to-trait-or-not-to-trait">12.7 To Trait or not to Trait?</h4>
+
+<ul>
+  <li>If the behavior will not be reused ==&gt; concrete class.</li>
+  <li>If it might be reused in multiple, unrelated classes ==&gt; trait.</li>
+  <li>If you want to inherit from it in java code ==&gt; abstract class.</li>
+  <li>If you plan to distribute it in complied form, and expected others inheritting from it ==&gt; abstract class.</li>
+  <li>If you still do not know ==&gt; trait.</li>
+</ul>
+
+<h3 id="13-packages-and-imports">13. Packages and Imports</h3>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1</span>
+<span class="k">package</span> <span class="nn">bobsrockets.navigation</span>
+<span class="k">class</span> <span class="nc">Navigator</span>
+
+<span class="c1">// 2</span>
+<span class="k">package</span> <span class="nn">bobsrockets.navigation</span> <span class="o">{</span>
+  <span class="k">class</span> <span class="nc">Navigator</span>
+<span class="o">}</span>
+
+<span class="c1">// 3</span>
+<span class="k">package</span> <span class="nn">bobsrockets</span> <span class="o">{</span>
+  <span class="k">package</span> <span class="nn">navigation</span> <span class="o">{</span>
+    <span class="k">class</span> <span class="nc">Navigator</span>
+	<span class="c1">// all names accessible in scopes outside the package</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">_root_</code>: outside any packagea user can write.</p>
+
+<h4 id="133-imports">13.3 Imports</h4>
+<p>three principal differences with Java:</p>
+
+<ol>
+  <li>may appear anywhere.</li>
+  <li>may refer to objects(singleton or regular) in addition to packages.</li>
+  <li>let you rename and hide some of the imported members.</li>
+</ol>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">Fruits.</span><span class="o">{</span><span class="nc">Apple</span><span class="o">,</span> <span class="nc">Orange</span><span class="o">}</span>
+<span class="k">import</span> <span class="nn">Fruits.</span><span class="o">{</span><span class="nc">Apple</span> <span class="k">=&gt;</span> <span class="nc">Mcintosh</span><span class="o">,</span> <span class="nc">Orange</span><span class="o">}</span>
+<span class="k">import</span> <span class="nn">Fruits.</span><span class="o">{</span><span class="nc">Apple</span> <span class="k">=&gt;</span> <span class="k">_</span><span class="o">,</span> <span class="nc">Orange</span><span class="o">}</span>
+<span class="k">import</span> <span class="nn">Fruits._</span>
+<span class="k">import</span> <span class="nn">Fruits.</span><span class="o">{</span><span class="nc">Apple</span> <span class="k">=&gt;</span> <span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="134-implict-imports">13.4 Implict Imports</h4>
+<p>Scala adds some imports implicitly to every program:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.lang._</span>
+<span class="k">import</span> <span class="nn">scala._</span>
+<span class="k">import</span> <span class="nn">Predef._</span>
+</code></pre></div></div>
+
+<p>special: later imports overshadow earlier ones.</p>
+
+<h4 id="135-access-modifiers">13.5 Access Modifiers</h4>
+
+<ul>
+  <li>private: visible only inside. It applies also for inner classes.</li>
+  <li>protected: only accessible from subclass.</li>
+  <li>public: not labeled.</li>
+</ul>
+
+<p>A class shares all its access rights with its companion object and vice versa.</p>
+
+<h4 id="136-package-objects">13.6 Package Objects</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In file bobsdelights/package.scala</span>
+<span class="n">pacakge</span> <span class="k">object</span> <span class="nc">bobsdelights</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="nf">helpMethods</span> <span class="k">=</span> <span class="o">{}</span> <span class="c1">// package-wide type aliases</span>
+                       <span class="c1">// or implicit conversions.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="14-assertions-and-tests">14. Assertions and Tests</h3>
+<p>ScalaTest is the most flexible Scala test framework.</p>
+
+<h3 id="15-case-classes-and-pattern-matching">15. Case Classes and Pattern Matching</h3>
+
+<h4 id="152-kinds-of-patterns">15.2 Kinds of Patterns</h4>
+
+<ul>
+  <li>Wildcard patterns <code class="language-plaintext highlighter-rouge">case _ =&gt;</code></li>
+  <li>Constant patterns <code class="language-plaintext highlighter-rouge">case 5 =&gt;</code> or <code class="language-plaintext highlighter-rouge">case Pi =&gt;</code></li>
+  <li>
+    <p>Variable patterns <code class="language-plaintext highlighter-rouge">case x =&gt; </code>
+a simple name starting with a lowercase letter ==&gt; variable;
+other =&gt; constant.</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">math.Pi</span>
+<span class="k">val</span> <span class="nv">pi</span> <span class="k">=</span> <span class="nc">Pi</span>
+
+<span class="n">E</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">Pi</span> <span class="k">=&gt;</span> <span class="c1">// constant</span>
+  <span class="k">case</span> <span class="n">pi</span> <span class="k">=&gt;</span> <span class="c1">// variable</span>
+  <span class="k">case</span> <span class="n">`pi`</span> <span class="k">=&gt;</span> <span class="c1">// constant</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Constructor patterns</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">Binop</span><span class="o">(</span><span class="s">"+"</span><span class="o">,</span> <span class="n">e</span><span class="o">,</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="k">=&gt;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Sequence patterns</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">List</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="k">_</span><span class="o">,</span> <span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="c1">// Or,</span>
+  <span class="k">case</span> <span class="nc">List</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="k">_</span><span class="o">*)</span> <span class="k">=&gt;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Tuple patterns: <code class="language-plaintext highlighter-rouge">case (a, b, c) =&gt; </code></li>
+  <li>
+    <p>Typed patterns</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="n">s</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=&gt;</span> <span class="nv">s</span><span class="o">.</span><span class="py">length</span>
+  <span class="k">case</span> <span class="n">m</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="k">_</span>, <span class="k">_</span><span class="o">]</span> <span class="k">=&gt;</span> <span class="nv">m</span><span class="o">.</span><span class="py">size</span> <span class="c1">//type erasure, exception: Array</span>
+  <span class="k">case</span> <span class="k">_</span> <span class="k">=&gt;</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Variable binding</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">expr</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">Unop</span><span class="o">(</span><span class="s">"abs"</span><span class="o">,</span> <span class="n">e</span> <span class="k">@</span> <span class="nc">Unop</span><span class="o">(</span><span class="s">"abs"</span><span class="o">),</span> <span class="k">_</span><span class="o">))</span> <span class="k">=&gt;</span> <span class="n">e</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="153-pattern-guards">15.3 Pattern Guards</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">e</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">BinOp</span><span class="o">(</span><span class="s">"+"</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="c1">// Error</span>
+  <span class="k">case</span> <span class="nc">Binop</span><span class="o">(</span><span class="s">"+"</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span> <span class="k">=&gt;</span> <span class="c1">// OK</span>
+
+  <span class="k">case</span> <span class="n">n</span><span class="k">:</span> <span class="kt">Int</span> <span class="kt">if</span> <span class="err">0</span> <span class="kt">&lt;</span> <span class="kt">n</span> <span class="o">=&gt;</span>
+  <span class="k">case</span> <span class="n">s</span><span class="k">:</span> <span class="kt">String</span> <span class="kt">if</span> <span class="kt">s</span><span class="o">(</span><span class="err">0</span><span class="o">)</span> <span class="o">=</span><span class="k">=</span> <span class="s">"a"</span> <span class="k">=&gt;</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="155-sealed-classes">15.5 Sealed Classes</h4>
+<p>sealed: A sealed class cannot have any new subclass added except the ones in the same file. useful for case class.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="n">e</span><span class="k">:</span> <span class="kt">@unchecked</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">Number</span><span class="o">(</span><span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span>
+  <span class="k">case</span> <span class="nc">Var</span><span class="o">(</span><span class="k">_</span><span class="o">)</span> <span class="k">=&gt;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="157-patterns-everywhere">15.7 Patterns Everywhere</h4>
+<ul>
+  <li>
+    <p>Patterns in variable definitions.</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">val</span> <span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="n">string</span><span class="o">)</span> <span class="k">=</span> <span class="o">(</span><span class="mi">123</span><span class="o">,</span> <span class="s">"abc"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">BinOp</span><span class="o">(</span><span class="n">op</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">BinOp</span><span class="o">(</span><span class="s">"*"</span><span class="o">,</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">5</span><span class="o">),</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Case sequences as partial functions.</li>
+  <li>
+    <p>Patterns in for expressions.</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">for</span> <span class="o">(</span><span class="nc">Some</span><span class="o">(</span><span class="n">fruit</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="n">results</span><span class="o">)</span> <span class="nf">println</span><span class="o">(</span><span class="n">fruit</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="16-working-with-lists">16. Working with Lists</h3>
+<p>List:</p>
+
+<ul>
+  <li>immutable</li>
+  <li>recursive structure</li>
+  <li>homogeneous</li>
+  <li>covariant</li>
+</ul>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">List</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">)</span> <span class="k">=</span> <span class="n">fruit</span>
+
+<span class="n">x</span> <span class="o">::</span> <span class="n">xs</span> <span class="o">==</span> <span class="o">::(</span><span class="n">x</span><span class="o">,</span> <span class="n">xs</span><span class="o">)</span>
+
+<span class="n">xs</span> <span class="o">:::</span> <span class="n">ys</span>
+
+<span class="nv">xs</span><span class="o">.</span><span class="py">length</span>
+<span class="nv">xs</span><span class="o">.</span><span class="py">head</span> <span class="o">::</span> <span class="nv">xs</span><span class="o">.</span><span class="py">tail</span> <span class="o">==</span> <span class="nv">xs</span><span class="o">.</span><span class="py">init</span> <span class="o">::</span> <span class="nv">xs</span><span class="o">.</span><span class="py">last</span>
+<span class="nv">xs</span><span class="o">.</span><span class="py">reverse</span><span class="o">.</span><span class="py">reverse</span> <span class="o">==</span> <span class="n">xs</span>
+<span class="n">xs</span> <span class="n">splitAt</span> <span class="n">n</span> <span class="o">==</span> <span class="o">(</span><span class="n">xs</span> <span class="n">take</span> <span class="n">n</span><span class="o">,</span> <span class="n">xs</span> <span class="n">drop</span> <span class="n">n</span><span class="o">)</span>
+<span class="n">xs</span> <span class="n">apply</span> <span class="mi">2</span> <span class="o">==</span> <span class="nv">xs</span><span class="o">.</span><span class="py">drop</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="py">head</span>
+<span class="nv">xs</span><span class="o">.</span><span class="py">indices</span>
+
+<span class="nv">xs</span><span class="o">.</span><span class="py">flatten</span>
+<span class="o">(</span><span class="n">xs</span> <span class="n">zip</span> <span class="n">ys</span><span class="o">).</span><span class="py">unzip</span> <span class="o">==</span> <span class="o">(</span><span class="n">xs</span><span class="o">,</span> <span class="n">ys</span><span class="o">)</span>
+
+<span class="n">xs</span> <span class="n">partition</span> <span class="n">p</span> <span class="o">==</span> <span class="o">(</span><span class="n">xs</span> <span class="n">filter</span> <span class="n">p</span><span class="o">,</span> <span class="n">xs</span> <span class="nf">filter</span><span class="o">(!</span><span class="nf">p</span><span class="o">(</span><span class="k">_</span><span class="o">)))</span>
+
+<span class="n">xs</span> <span class="n">span</span> <span class="n">p</span> <span class="o">==</span> <span class="o">(</span><span class="n">xs</span> <span class="n">takeWhile</span> <span class="n">p</span><span class="o">,</span> <span class="n">xs</span> <span class="n">dropWhile</span> <span class="n">p</span><span class="o">)</span>
+
+<span class="nv">xs</span><span class="o">.</span><span class="py">forall</span><span class="o">(</span><span class="k">_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+<span class="nv">xs</span><span class="o">.</span><span class="py">exists</span><span class="o">(</span><span class="k">_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+
+<span class="o">(</span><span class="mi">0</span> <span class="o">/:</span> <span class="n">xs</span><span class="o">)(</span><span class="k">_</span> <span class="o">+</span> <span class="k">_</span><span class="o">)</span>
+<span class="o">(</span><span class="n">xs</span> <span class="o">:\</span> <span class="mi">0</span><span class="o">)(</span><span class="k">_</span> <span class="o">+</span> <span class="k">_</span><span class="o">)</span>
+
+<span class="nv">xs</span><span class="o">.</span><span class="py">sortWith</span><span class="o">(</span><span class="k">_</span> <span class="o">&lt;</span> <span class="k">_</span><span class="o">)</span> <span class="c1">//merge sort</span>
+</code></pre></div></div>
+
+<h4 id="168-methods-of-the-list-object">16.8 Methods of the List Object</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">List</span><span class="o">.</span><span class="py">apply</span>
+<span class="nv">List</span><span class="o">.</span><span class="py">range</span>
+<span class="nv">List</span><span class="o">.</span><span class="py">fill</span>
+<span class="nv">List</span><span class="o">.</span><span class="py">tabulate</span>
+<span class="nv">List</span><span class="o">.</span><span class="py">concat</span>
+</code></pre></div></div>
+
+<h4 id="1610-understanding-scalas-type-inference-algorithm">16.10 Understanding Scala’s Type Inference Algorithm</h4>
+<p>Type inference is Scala is flow based.</p>
+
+<p>curried function: non-function arguments at first, and then function arguments.</p>
+
+<h3 id="17-working-with-other-collections">17. Working with Other Collections</h3>
+
+<h4 id="171-sequences">17.1 Sequences</h4>
+<ul>
+  <li>Lists</li>
+  <li>Arrays</li>
+  <li>List buffers</li>
+  <li>Array buffers</li>
+  <li>Strings</li>
+</ul>
+
+<h4 id="172-sets-and-maps">17.2 Sets and Maps</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">c</span><span class="k">:</span> <span class="kt">scala.collection.immutable.Set</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>
+<span class="k">val</span> <span class="nv">c</span><span class="k">:</span> <span class="kt">scala.collection.mutable.Set</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>
+</code></pre></div></div>
+
+<h4 id="174-initializing-collections">17.4 Initializing Collections</h4>
+<p><code class="language-plaintext highlighter-rouge">xs.toArray</code>: order is same with iterator’s. copying is expensive.</p>
+
+<h3 id="18-mutable-objects">18. Mutable Objects</h3>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">hour</span> <span class="k">=</span> <span class="mi">12</span> <span class="c1">// equals</span>
+
+<span class="k">private</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">var</span> <span class="n">h</span> <span class="k">=</span> <span class="mi">12</span>
+<span class="k">def</span> <span class="nf">hour</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">h</span>
+<span class="k">def</span> <span class="nf">hour_=</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span><span class="n">h</span> <span class="k">=</span> <span class="n">x</span><span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="n">celsius</span><span class="k">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="k">_</span> <span class="c1">// init, default value, 0</span>
+<span class="k">var</span> <span class="n">celsius</span><span class="k">:</span> <span class="kt">Float</span> <span class="c1">// abstract field, cannot init</span>
+</code></pre></div></div>
+
+<h3 id="19-type-parameterization">19. Type Parameterization</h3>
+
+<h3 id="20-abstract-members">20. Abstract Members</h3>
+
+<h4 id="205-initializing-abstract-vals">20.5 Initializing Abstract Vals</h4>
+<ul>
+  <li>class paramter: evaluated before passed to class constructor.</li>
+  <li>abstract fields: evaluated only after the superclass has been initalized.</li>
+</ul>
+
+<p>solutions:</p>
+
+<ul>
+  <li>
+    <p>Pre-initialized fields:</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="nv">n</span> <span class="k">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">x</span>
+  <span class="k">val</span> <span class="nv">d</span> <span class="k">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="o">}</span> <span class="k">with</span> <span class="nc">RationalTrait</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Lazy vals:</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">lazy</span> <span class="k">val</span> <span class="nv">g</span> <span class="k">=</span> <span class="o">{</span>
+  <span class="nf">require</span><span class="o">(</span><span class="n">d</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span>
+  <span class="c1">// ....</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="206-abstract-types">20.6 Abstract Types</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Food</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">Animal</span> <span class="o">{</span>
+  <span class="k">type</span> <span class="kt">SuitableFood</span> <span class="k">&lt;:</span> <span class="kt">Food</span>
+  <span class="k">def</span> <span class="nf">eat</span><span class="o">(</span><span class="n">food</span><span class="k">:</span> <span class="kt">SuitableFood</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="208-refinement-types">20.8 Refinement Types</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pasture</span> <span class="o">{</span>
+  <span class="k">var</span> <span class="n">animals</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Animal</span> <span class="o">{</span><span class="k">type</span> <span class="kt">SuitableFood</span> <span class="kt">=</span> <span class="kt">Grass</span><span class="o">}]</span> <span class="k">=</span> <span class="nc">Nil</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="21-implicit-conversions-and-parameters">21. Implicit Conversions and Parameters</h3>
+
+<h4 id="212-rules-for-implicits">21.2 Rules for Implicits</h4>
+<ol>
+  <li>Only definitions marked <code class="language-plaintext highlighter-rouge">implict</code> are available.</li>
+  <li>An inserted implict cnversion must be in scope as a single identifier, or be associated with the source or target type of the conversion.</li>
+</ol>
+
+<p>One-at-a-time rule: Only one implicit is inserted.</p>
+
+<p>usage:</p>
+
+<ul>
+  <li>conversions to an expected type</li>
+  <li>conversions of the receiver of a selection</li>
+  <li>implicit parameters (provide information, useful for generic functions)</li>
+</ul>
+
+<h4 id="215-implicit-parameters">21.5 Implicit Parameters</h4>
+<p>compiler replace <code class="language-plaintext highlighter-rouge">someCall(a)</code> with <code class="language-plaintext highlighter-rouge">someCall(a)(b)</code>, or <code class="language-plaintext highlighter-rouge">new SomeClass(a)</code> with <code class="language-plaintext highlighter-rouge">new SomeClass(a)(b)</code>.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">maxListImpParm</span><span class="o">[</span><span class="kt">T</span><span class="o">](</span><span class="n">elements</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span>
+      <span class="o">(</span><span class="k">implicit</span> <span class="n">ordering</span><span class="k">:</span> <span class="kt">Ordering</span><span class="o">[</span><span class="kt">T</span><span class="o">])</span><span class="k">:</span> <span class="kt">T</span> <span class="o">=</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="217-when-multiple-conversions-apply">21.7 When Multiple Conversions Apply</h4>
+<p>If one of the available conversions is strictly more specifi than the others, then the compiler will choose the more specific one.</p>
+
+<p>one implicit conversion is more specific than another if one of the following applies applies:</p>
+
+<ul>
+  <li>subtype.</li>
+  <li>Both conversions are methods, and the enclosing class of the former extends the enclosing class of the latter.</li>
+</ul>
+
+<p>Think twice and use implicits.</p>
+
+<h3 id="22-implementing-lists">22. Implementing Lists</h3>
+<p>ListBuffer track the pointer of tail of List.</p>
+
+<h3 id="23-for-expressions-revisited">23. For Expressions Revisited</h3>
+<p>all <code class="language-plaintext highlighter-rouge">for</code> expressions that yield a result ==&gt; combinations of <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">flatMap</code>, and <code class="language-plaintext highlighter-rouge">withFilter</code>.</p>
+
+<p>all <code class="language-plaintext highlighter-rouge">for</code> expressions without yield ==&gt; <code class="language-plaintext highlighter-rouge">foreach</code> and <code class="language-plaintext highlighter-rouge">withFilter</code></p>
+
+<h4 id="231-for-expressions">23.1 For Expressions</h4>
+<p><code class="language-plaintext highlighter-rouge">for (seq) yield expr</code>
+and
+<code class="language-plaintext highlighter-rouge">for (seq) body</code></p>
+
+<h3 id="24-collections-in-depth">24. Collections in Depth</h3>
+
+<h4 id="243-trait-traversable">24.3 Trait Traversable</h4>
+<p><code class="language-plaintext highlighter-rouge">foreach</code> is the basis of the implementation of all operations in Traversable, so its performance matters.</p>
+
+<h4 id="244-trait-iterable">24.4 Trait Iterable</h4>
+
+<h4 id="245-the-sequence-traits-seq-indexedseq-and-linearseq">24.5 The Sequence Traits Seq, IndexedSeq, and LinearSeq</h4>
+<p><code class="language-plaintext highlighter-rouge">update</code>: mutable sequences
+<code class="language-plaintext highlighter-rouge">updated</code>: always return a new sequence.</p>
+
+<h4 id="2413-equality">24.13 Equality</h4>
+<p>Collections in different categories are always unequal.</p>
+
+<p>Collections with the same category are equal if and only if they have the same elements.</p>
+
+<h4 id="2414-views">24.14 Views</h4>
+<p>A view is a special kind of collection that represents some base collection, but implements all of its transformers lazily.</p>
+
+<p>reason to use:</p>
+
+<ul>
+  <li>performace: get rid of intermediate data strucure.</li>
+  <li>hope to update some mutable sequences.</li>
+</ul>
+
+<h3 id="25-the-architecture-of-scala-collections">25. The Architecture of Scala Collections</h3>
+<p>same-result-type</p>
+
+<h3 id="26-extractors">26. Extractors</h3>
+<p><code class="language-plaintext highlighter-rouge">apply</code> and <code class="language-plaintext highlighter-rouge">unapply</code></p>
+
+<h3 id="27-annotations">27. Annotations</h3>
+
+<h4 id="271-why-have-annotations">27.1 Why have Annotations?</h4>
+<ul>
+  <li>Automatic generation of documentation as with Scaladoc.</li>
+  <li>Pretty printing code so that it matches your preferred style.</li>
+  <li>Checking code for common errors.</li>
+  <li>Experimental type checking.</li>
+</ul>
+
+<h3 id="28-working-with-xml">28. Working with XML</h3>
+
+<h3 id="29-modular-programming-using-objects">29. Modular Programming Using Objects</h3>
+
+<h3 id="30-object-equality">30. Object Equality</h3>
+
+<h3 id="31-combining-scala-and-java">31. Combining Scala and Java</h3>
+
+<h3 id="32-futures-and-concurrency">32. Futures and Concurrency</h3>
+
+<h3 id="33-combinator-parsing">33. Combinator Parsing</h3>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">飲冰</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:facai.yan@gmail.com">facai.yan@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/facaiy"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">facaiy</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>富貴福澤，將厚吾之生也；貧賤憂戚，庸玉女於成也。
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

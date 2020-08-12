@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Mac新机配置记录</title>
+  <meta name="description" content="update: 2018-02-16">
+
+  <link rel="stylesheet" href="../../../../css/main.css">
+  <link rel="canonical" href="mac_app_for_programmer.html">
+  <link rel="alternate" type="application/rss+xml" title="飲冰" href="../../../../feed.xml.rss">
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99358515-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-99358515-2');
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?93958d5b998cdceacf0dd973dfdf71b5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="../../../../index.html">飲冰</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="../../../../about/index.html">简介</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../../life/index.html">生活</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../index.html">琐碎</a>
+          
+        
+          
+          <a class="page-link" href="../../../../recommend.html">推荐</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Mac新机配置记录</h1>
+    <p class="post-meta"><time datetime="2018-02-16T00:00:00+00:00" itemprop="datePublished">Feb 16, 2018</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>update: 2018-02-16</p>
+
+<p>今天是农历大年初一，新年快乐！</p>
+
+<p>最近换了工作，因为新公司数据安全政策，不能使用Mac Time Machine（时光机器）进行系统迁移，所以只能重新手配一次系统。我自己有些配置偏好，林林杂杂，为了以后参考方便，趁今天时间富裕，整理集于一处。</p>
+
+<p>我比较偏爱键盘流，又习惯了VIM键绑定风格，所以配置基本都是围绕着快速操作的目的设计。</p>
+
+<h3 id="常用配置">常用配置</h3>
+
+<ul>
+  <li>
+    <p>下载安装配置文件：<a href="https://github.com/facaiy/facai-tools">facaiy/facai-tools</a></p>
+  </li>
+  <li>
+    <p>下载配色方案：<a href="https://github.com/altercation/solarized">altercation/solarized</a></p>
+  </li>
+</ul>
+
+<h3 id="包管理器">包管理器</h3>
+
+<ul>
+  <li>下载安装<a href="https://brew.sh/">Homebrew</a></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 更新</span>
+brew update
+</code></pre></div></div>
+
+<ul>
+  <li>开启FileVault</li>
+  <li>开启Time Machine</li>
+</ul>
+
+<h3 id="基础工具">基础工具</h3>
+
+<ul>
+  <li>
+    <p>Git: <code class="language-plaintext highlighter-rouge">brew install git</code></p>
+  </li>
+  <li>VIM: <code class="language-plaintext highlighter-rouge">brew install vim --with-lua</code>
+    <ul>
+      <li>安装VIM包管理器：<a href="https://github.com/VundleVim/Vundle.vim">VundleVim/Vundle.vim</a>，根据使用说明，安装全部插件。</li>
+    </ul>
+  </li>
+  <li>终端: <code class="language-plaintext highlighter-rouge">brew cask install iterm2</code>
+    <ul>
+      <li>切换Solarized Dark配色方案: Profiles –&gt; Colors –&gt; Color Presets</li>
+      <li>变更字体：Profiles –&gt; Text –&gt; Font:
+        <ol>
+          <li>Font: 16pt Monaco</li>
+          <li>Non-ASCII Font: 18pt DFKai-SB</li>
+        </ol>
+      </li>
+      <li>恢复Alt键：Profiles –&gt; Keys: 变更Option Keys为<code class="language-plaintext highlighter-rouge">ESC+</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="基础环境">基础环境</h3>
+
+<ul>
+  <li>
+    <p>切换Shell: 从默认Bash切换到Zsh，下载安装<a href="https://github.com/sorin-ionescu/prezto">prezto</a></p>
+  </li>
+  <li>
+    <p>安装Python: <a href="https://www.anaconda.com/">anaconda</a>发行版</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew cask <span class="nb">install </span>anaconda
+</code></pre></div></div>
+
+<ul>
+  <li>安装Java8:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>caskroom/versions/java8
+</code></pre></div></div>
+
+<h3 id="生产力工具">生产力工具</h3>
+
+<ul>
+  <li>分屏
+    <ol>
+      <li>安装Tmux：<code class="language-plaintext highlighter-rouge">brew install tmux</code></li>
+      <li>安装包管理器：<a href="https://github.com/tmux-plugins/tpm">tmux-plugins/tpm</a>，并根据说明，更新全部插件。</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 快速跳转：j键</span>
+brew <span class="nb">install </span>autojump
+
+<span class="c"># 统一命令行和X剪贴板，见Tmux配置：</span>
+brew <span class="nb">install </span>reattach-user-namespace
+
+<span class="c"># 命令速查表</span>
+brew <span class="nb">install </span>tldr
+</code></pre></div></div>
+
+<ul>
+  <li>本地笔记应用：jupyter安装扩展：<a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions">jupyter_contrib</a>
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">conda install -c conda-forge jupyter_contrib_nbextensions</code></li>
+      <li>根据说明，安装VIM键绑定。</li>
+    </ol>
+  </li>
+  <li>
+    <p>笔记应用：evernote: <code class="language-plaintext highlighter-rouge">brew cask install evernote</code></p>
+  </li>
+  <li>浏览器：
+    <ol>
+      <li>安装Firefox-ESL: <code class="language-plaintext highlighter-rouge">brew install caskroom/versions/firefox-esr</code></li>
+      <li>常用扩展：
+        <ul>
+          <li>Adblock Plus: 广告屏蔽</li>
+          <li>Nightly Tester Tools: 强制兼容</li>
+          <li>Vimperator: VIM绑定</li>
+          <li>All-in-One Sidebar: 侧边栏</li>
+          <li>Menu Wizard: 订制菜单栏</li>
+          <li>Tab Groups: 标签分组</li>
+          <li>Tab Mix Plus: 标签管理
+            <ul>
+              <li>Peference –&gt; Links –&gt; Force to open in new tab: Links to other sites</li>
+              <li>Peference –&gt; Events –&gt; New Tabs –&gt; Open other tabs next to current one</li>
+            </ul>
+          </li>
+          <li>Evernote Web Clipper</li>
+          <li>Lastpass: 密码管理</li>
+          <li>FlashGot: 下载管理</li>
+          <li>FoxyProxy Standard: 代理</li>
+          <li>gtranslate: 翻译</li>
+        </ul>
+      </li>
+      <li>地址栏安装搜索引擎：YouDao, Github</li>
+    </ol>
+  </li>
+  <li>Finder窗口管理器：
+    <ul>
+      <li>10.11及以下：<a href="https://www.trankynam.com/xtrafinder/">XtraFinder</a></li>
+      <li>10.12及以上：<a href="https://totalfinder.binaryage.com/">TotalFinder</a>，收费软件</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="编程">编程</h3>
+
+<ul>
+  <li>Python IDE: <code class="language-plaintext highlighter-rouge">brew cask install pycharm-ce</code>
+    <ul>
+      <li>python切换到anaconda版本</li>
+      <li>安装IdeaVim</li>
+    </ul>
+  </li>
+  <li>Java/Scala IDE: <code class="language-plaintext highlighter-rouge">brew cask install intellij-idea-ce</code>
+    <ul>
+      <li>安装IdeaVim</li>
+    </ul>
+  </li>
+  <li>C++: <code class="language-plaintext highlighter-rouge">brew cask install visual-studio-code</code></li>
+</ul>
+
+<h3 id="其他">其他</h3>
+
+<ul>
+  <li><a href="https://pomotodo.com/">pomotodo</a>: 时间管理 <code class="language-plaintext highlighter-rouge">brew cask install pomotodo</code></li>
+  <li>mactex: LaTeX <code class="language-plaintext highlighter-rouge">brew cask install mactex</code>
+    <ul>
+      <li>编译参考： <a href="https://github.com/facaiy/banyuan-ppt">facaiy/banyuan-ppt</a></li>
+    </ul>
+  </li>
+  <li>输入法：<a href="http://rime.im/">Squirrel</a> <code class="language-plaintext highlighter-rouge">brew cask install squirrel</code>
+    <ul>
+      <li>安装：<a href="https://github.com/facaiy/facai-tools/tree/master/config/squirrel">仓颉单字方案</a></li>
+    </ul>
+  </li>
+  <li>StarUML: 框架图 <code class="language-plaintext highlighter-rouge">brew cask install staruml</code></li>
+  <li>
+    <p>xmind: 思维导图 <code class="language-plaintext highlighter-rouge">brew cask install xmind</code></p>
+  </li>
+  <li>Haroopad: markdown编辑器 <code class="language-plaintext highlighter-rouge">brew cask install haroopad</code></li>
+  <li>下载软件：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">brew cask install progressive-downloader</code></li>
+      <li><code class="language-plaintext highlighter-rouge">brew install aria2</code></li>
+    </ul>
+  </li>
+  <li>科学上网：<code class="language-plaintext highlighter-rouge">brew cask install shadowsocksx-ng</code></li>
+</ul>
+
+<p><br />
+<br /></p>
+
+<p>参考阅读：</p>
+
+<ul>
+  <li><a href="https://www.zhihu.com/question/20873070">程序员如何优雅地使用 macOS？</a></li>
+</ul>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">飲冰</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:facai.yan@gmail.com">facai.yan@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/facaiy"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">facaiy</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>富貴福澤，將厚吾之生也；貧賤憂戚，庸玉女於成也。
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Shadowsocks, 批量导入配置 - Android, Mac</title>
+  <meta name="description" content="update: 2017-06-25">
+
+  <link rel="stylesheet" href="../../../../css/main.css">
+  <link rel="canonical" href="shadowsocks_android_import_ss_links.html">
+  <link rel="alternate" type="application/rss+xml" title="飲冰" href="../../../../feed.xml.rss">
+
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99358515-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-99358515-2');
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?93958d5b998cdceacf0dd973dfdf71b5";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="../../../../index.html">飲冰</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="../../../../about/index.html">简介</a>
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../../life/index.html">生活</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="../../../index.html">琐碎</a>
+          
+        
+          
+          <a class="page-link" href="../../../../recommend.html">推荐</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Shadowsocks, 批量导入配置 - Android, Mac</h1>
+    <p class="post-meta"><time datetime="2017-06-24T00:00:00+00:00" itemprop="datePublished">Jun 24, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>update: 2017-06-25</p>
+
+<p>最近手腕有些不适，医生说是肌肉疲劳，建议多休息，于是周末宅住处。不太敢用电脑，可闲不住呐，就折腾了些脚本，均放在<a href="https://github.com/facaiy/facai-tools/tree/master/script/vpnso">这里</a>，以供下载。</p>
+
+<h3 id="a-shadowsocks-android">A. Shadowsocks-android</h3>
+
+<h4 id="00-起因">0.0 起因</h4>
+
+<p>需求是这样产生的。我使用的科学上网提供商只有两种配置，一种是json文件，它有全部IP的配置信息，但shadowsocks不支持批量导入；另一种是毎IP有对应QR码，分别扫码导入。但是，我想要更简单点，一键导入全部配置。作为一只程序猿，别人不支持，咱就自己捋袖子开干。</p>
+
+<h4 id="01-过程">0.1 过程</h4>
+
+<p>Shadowsocks-android唯一能批量导入的功能是「从剪贴板导入」(Import from Clipboard)。查看它导入导出，使用的是私有ss协议，形如<code class="language-plaintext highlighter-rouge">ss://abcdx#jp</code>，看上去是对数据做了个简单的编码。因为代码是开源的，就去官方扒。 <br />
+版本如下：<code class="language-plaintext highlighter-rouge">commit 095f4831db806d55f164e52a6164cd92a5919339</code></p>
+
+<p>配合关键字使用<code class="language-plaintext highlighter-rouge">git grep</code>命令，很快就定位到<code class="language-plaintext highlighter-rouge">Profile.scala</code>文件：</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">toUri</span><span class="k">:</span> <span class="kt">Uri</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="nv">builder</span> <span class="k">=</span> <span class="k">new</span> <span class="nv">Uri</span><span class="o">.</span><span class="py">Builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="py">scheme</span><span class="o">(</span><span class="s">"ss"</span><span class="o">)</span>
+    <span class="o">.</span><span class="py">encodedAuthority</span><span class="o">(</span><span class="s">"%s@%s:%d"</span><span class="o">.</span><span class="py">formatLocal</span><span class="o">(</span><span class="nv">Locale</span><span class="o">.</span><span class="py">ENGLISH</span><span class="o">,</span>
+      <span class="nv">Base64</span><span class="o">.</span><span class="py">encodeToString</span><span class="o">(</span><span class="s">"%s:%s"</span><span class="o">.</span><span class="py">formatLocal</span><span class="o">(</span><span class="nv">Locale</span><span class="o">.</span><span class="py">ENGLISH</span><span class="o">,</span> <span class="n">method</span><span class="o">,</span> <span class="n">password</span><span class="o">).</span><span class="py">getBytes</span><span class="o">,</span>
+        <span class="nv">Base64</span><span class="o">.</span><span class="py">NO_PADDING</span> <span class="o">|</span> <span class="nv">Base64</span><span class="o">.</span><span class="py">NO_WRAP</span> <span class="o">|</span> <span class="nv">Base64</span><span class="o">.</span><span class="py">URL_SAFE</span><span class="o">),</span>
+      <span class="nf">if</span> <span class="o">(</span><span class="nv">host</span><span class="o">.</span><span class="py">contains</span><span class="o">(</span><span class="sc">':'</span><span class="o">))</span> <span class="sc">'['</span> <span class="o">+</span> <span class="n">host</span> <span class="o">+</span> <span class="sc">']'</span> <span class="k">else</span> <span class="n">host</span><span class="o">,</span> <span class="n">remotePort</span><span class="o">))</span>
+  <span class="k">val</span> <span class="nv">configuration</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">PluginConfiguration</span><span class="o">(</span><span class="n">plugin</span><span class="o">)</span>
+  <span class="nf">if</span> <span class="o">(</span><span class="nv">configuration</span><span class="o">.</span><span class="py">selected</span><span class="o">.</span><span class="py">nonEmpty</span><span class="o">)</span>
+    <span class="nv">builder</span><span class="o">.</span><span class="py">appendQueryParameter</span><span class="o">(</span><span class="nv">Key</span><span class="o">.</span><span class="py">plugin</span><span class="o">,</span> <span class="nv">configuration</span><span class="o">.</span><span class="py">selectedOptions</span><span class="o">.</span><span class="py">toString</span><span class="o">(</span><span class="kc">false</span><span class="o">))</span>
+  <span class="nf">if</span> <span class="o">(!</span><span class="n">nameIsEmpty</span><span class="o">)</span> <span class="nv">builder</span><span class="o">.</span><span class="py">fragment</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+  <span class="nv">builder</span><span class="o">.</span><span class="py">build</span><span class="o">()</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>思路比较简单，对<code class="language-plaintext highlighter-rouge">method</code>和密码编码后，组成URL。问题是这里格式应该是<code class="language-plaintext highlighter-rouge">ss://base64@host:port?...#jp</code>，和前面看到的不符合。可能是存在<code class="language-plaintext highlighter-rouge">encodeAuthority</code>这个方法，尝试追了下，发现是Android官方库，而且有点绕。</p>
+
+<p>转换思路，从解码端反查下如何，于是定位到<code class="language-plaintext highlighter-rouge">Parser.scala</code>文件。</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">val</span> <span class="nv">pattern</span> <span class="k">=</span> <span class="s">"(?i)ss://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;\\[\\]]*[-a-zA-Z0-9+&amp;@#/%=~_|\\[\\]]"</span><span class="o">.</span><span class="py">r</span>
+<span class="k">private</span> <span class="k">val</span> <span class="nv">legacyPattern</span> <span class="k">=</span> <span class="s">"^(.+?):(.*)@(.+?):(\\d+?)$"</span><span class="o">.</span><span class="py">r</span>
+
+<span class="k">def</span> <span class="nf">findAll</span><span class="o">(</span><span class="n">data</span><span class="k">:</span> <span class="kt">CharSequence</span><span class="o">)</span><span class="k">:</span> <span class="kt">Iterator</span><span class="o">[</span><span class="kt">Profile</span><span class="o">]</span> <span class="k">=</span>
+  <span class="nv">pattern</span><span class="o">.</span><span class="py">findAllMatchIn</span><span class="o">(</span><span class="nf">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="s">""</span> <span class="k">else</span> <span class="n">data</span><span class="o">).</span><span class="py">map</span><span class="o">(</span><span class="n">m</span> <span class="k">=&gt;</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="nv">uri</span> <span class="k">=</span> <span class="nv">Uri</span><span class="o">.</span><span class="py">parse</span><span class="o">(</span><span class="nv">m</span><span class="o">.</span><span class="py">matched</span><span class="o">)</span>
+    <span class="nv">uri</span><span class="o">.</span><span class="py">getUserInfo</span> <span class="k">match</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="kc">null</span> <span class="k">=&gt;</span> <span class="k">val</span> <span class="nv">str</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="nv">Base64</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="nv">uri</span><span class="o">.</span><span class="py">getHost</span><span class="o">,</span> <span class="nv">Base64</span><span class="o">.</span><span class="py">NO_PADDING</span><span class="o">),</span> <span class="s">"UTF-8"</span><span class="o">);</span> <span class="n">str</span> <span class="k">match</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="nf">legacyPattern</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">)</span> <span class="k">=&gt;</span>  <span class="c1">// legacy uri</span>
+      <span class="o">}</span>
+</code></pre></div></div>
+
+<p>原来这个协议还有个老版本格式，对<code class="language-plaintext highlighter-rouge">method:password@server:port</code>进行编码就行。</p>
+
+<p>思路就简单了，读json文件，提取出相关数据进行编码，得到全部ss链接，全部复制，导入完成。</p>
+
+<h4 id="02-结果">0.2 结果</h4>
+
+<p>Python脚本非常简单，如下：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3
+</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">json_file</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_data</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+
+<span class="n">configs</span> <span class="o">=</span> <span class="p">[</span><span class="s">"{}:{}@{}:{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+            <span class="n">c</span><span class="p">[</span><span class="s">"method"</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="s">"password"</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="s">"server"</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="s">"server_port"</span><span class="p">])</span>
+			<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">"configs"</span><span class="p">]]</span>
+
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="n">ss</span> <span class="o">=</span> <span class="p">[</span><span class="n">base64</span><span class="p">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">"utf8"</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ss</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">"utf8"</span><span class="p">))</span>
+<span class="c1"># ss://YW........
+# ss://YW........
+# ss://YW........
+# ss://YW........
+</span></code></pre></div></div>
+
+<p>另外，要定位速度最快的IP，就写了对每个IP测速并排序的Bash脚本，单线程，比较慢，但够用了。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">COUNTS</span><span class="o">=</span>5
+
+<span class="k">while </span><span class="nb">getopts</span> <span class="s2">"s:c::"</span> opt<span class="p">;</span> <span class="k">do
+  case</span> <span class="nv">$opt</span> <span class="k">in
+    </span>s<span class="p">)</span> <span class="nv">SERVERS</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+    c<span class="p">)</span> <span class="nv">COUNTS</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+    <span class="se">\?</span><span class="p">)</span> <span class="nb">echo</span> <span class="s2">"usage: pingall -h [server file] -c [ping counts]"</span><span class="p">;;</span>
+  <span class="k">esac</span>
+<span class="k">done
+
+</span><span class="nb">echo</span> <span class="s2">"servers file: </span><span class="nv">$SERVERS</span><span class="s2">, ping counts:  </span><span class="nv">$COUNTS</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="s2">"server</span><span class="se">\t\t\t</span><span class="s2">min/avg/max/stddev"</span>
+
+<span class="nv">TMPFILES_PREFIX</span><span class="o">=</span>/tmp/.<span class="nv">$SERVERS</span>.info
+
+<span class="nv">TMPDATA</span><span class="o">=</span><span class="nv">$TMPFILES_PREFIX</span>.origin
+<span class="nb">cat</span> <span class="nv">$SERVERS</span> | xargs <span class="nt">-n</span> 1 ping <span class="nt">-c</span> <span class="nv">$COUNTS</span> <span class="o">&gt;</span> <span class="nv">$TMPDATA</span>
+
+<span class="nv">TMPFILTER</span><span class="o">=</span><span class="nv">$TMPFILES_PREFIX</span>.filter
+<span class="nb">cat</span> <span class="nv">$TMPDATA</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'^round-trip|^---'</span> <span class="o">&gt;</span> <span class="nv">$TMPFILTER</span>
+
+<span class="nb">cat</span> <span class="nv">$TMPFILTER</span> | <span class="se">\</span>
+<span class="nb">awk</span> <span class="s1">'{ if ($1 ~ /---/) { SERVER=$2 } else { print SERVER "\t" $4, $5} }'</span> | <span class="se">\</span>
+<span class="nb">sort</span> <span class="nt">-t</span>/ <span class="nt">-k</span> 2n <span class="nt">-b</span>
+
+<span class="nb">rm</span> <span class="nv">$TMPDATA</span> <span class="nv">$TMPFILTER</span>
+<span class="c">#servers file: server.txt, ping counts:  5</span>
+<span class="c">#server                  min/avg/max/stddev</span>
+<span class="c">#xx.xxx.com     44.706/45.730/48.300/1.325 ms</span>
+<span class="c">#yy.yyy.com     51.092/52.552/53.528/0.826 ms</span>
+</code></pre></div></div>
+
+<p>人生苦短，Python当歌，收工！</p>
+
+<p><br /></p>
+
+<h3 id="b-shadowsocksx-mac">B. ShadowsocksX, Mac</h3>
+
+<p>更新：2018-07-07: 使用ShadowsocksX-NG，已经支持全局配置导入导出。</p>
+
+<p><br /></p>
+
+<p>参考：<a href="https://github.com/shadowsocks/shadowsocks-iOS/issues/150">OS X下如何导入gui-config.json</a></p>
+
+<p>Mac下的ShadowsocksX没有任何批量导入的功能，所以偏方是直接改它的配置文件。因为配置文件数据段是编码的json数据，恰好提供商给我的就是json格式，所以只需要将文件编码后，置换数据段就行。工作量非常小，具体如下：</p>
+
+<ul>
+  <li>
+    <p>将ShadowsocksX配置文件plist转成xml:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plutil <span class="nt">-convert</span> xml1 ~/Library/Preferences/clowwindy.ShadowsocksX.plist <span class="nt">-o</span> xxx.xml
+</code></pre></div>    </div>
+  </li>
+  <li>将IP的json配置文件编码：
+    <ol>
+      <li>
+        <p>改json文件：</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"current"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="nl">"profiles"</span><span class="p">:[{</span><span class="nl">"password"</span><span class="p">:</span><span class="s2">"xxxxxxxx"</span><span class="p">,</span><span class="nl">"method"</span><span class="p">:</span><span class="s2">"aes-256-cfb"</span><span class="p">,</span><span class="nl">"server_port"</span><span class="p">:</span><span class="mi">8888</span><span class="p">,</span><span class="nl">"remarks"</span><span class="p">:</span><span class="s2">"US-Bandwagon"</span><span class="p">,</span><span class="nl">"server"</span><span class="p">:</span><span class="s2">"xxxxxxxxxx"</span><span class="p">}]}</span><span class="w">
+</span></code></pre></div>        </div>
+
+        <p>注意：字段要合符上述样式。<code class="language-plaintext highlighter-rouge">current</code>是正使用IP序号，要和原始配置匹配。</p>
+      </li>
+      <li>
+        <p>编码：</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3
+</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">json_file</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_data</span><span class="p">:</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_data</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="n">byte_res</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">json_str</span><span class="p">,</span> <span class="s">"utf8"</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">byte_res</span><span class="p">,</span> <span class="s">"utf8"</span><span class="p">))</span>
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>置换数据段：用如上输出二进制数据置换xml中data字段。</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>config<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;data&gt;</span>
+    bbabccfdeeffafafa....
+    <span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/plist&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>将xml转回plist:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plutil <span class="nt">-convert</span> binary1 xxx.xml <span class="nt">-o</span> yyy.plist
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>重新导入配置：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>defaults import clowwindy.ShadowsocksX yyy.plist
+</code></pre></div>    </div>
+  </li>
+  <li>重启客户端，完成。</li>
+</ul>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">飲冰</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:facai.yan@gmail.com">facai.yan@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/facaiy"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">facaiy</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>富貴福澤，將厚吾之生也；貧賤憂戚，庸玉女於成也。
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
